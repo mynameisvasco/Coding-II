@@ -7,19 +7,11 @@ public class DatasPassadas {
     Data atual = new Data();
     Data target = new Data(25, 12, 2018);
 
-    while(target.ano() != atual.ano())
+    while(true)
     {
-      if(target.mes() == atual.mes())
+      if(atual.dia() == target.dia() && atual.mes() == target.mes() && atual.ano() == target.ano())
       {
-        if(target.dia() == atual.dia())
-        {
-          break;
-        }
-        else
-        {
-          System.out.println(target.extenso());
-          target.seguinte();
-        }
+        break;
       }
       else
       {

@@ -163,84 +163,35 @@ public class Data
 
   public void seguinte() 
   {
-    switch (mes()) 
+    if(this.dia == diasDoMes(this.mes, this.ano))
     {
-      case 2:
-
-        if(dia() == 28)
+      if(this.mes == 2 && bissexto(this.ano))
+      {
+        if(this.dia == 29)
         {
-          if(bissexto(ano()))
-          {
-            this.dia++;
-          }
-          else
-          {
-            this.dia = 1;
-            this.mes++;
-          }
-        }
-        else if(dia() == 29)
-        {
-          if(bissexto(ano()))
-          {
-            this.dia = 1;
-            this.mes++;
-          }
-        }
-        else
-        {
-          this.dia++;
-        }
-
-        break;
-    
-
-      case 12:
-      
-        if(dia() == 31)
-        {
+          this.mes++;
           this.dia = 1;
-          this.mes = 1;
         }
         else
         {
           this.dia++;
         }
-
-        break;
-
-      default:
-        
-        switch(diasDoMes(mes(), ano()))
-        {
-          case 30:
-
-            if(dia() == 30)
-            {
-              this.dia = 1;
-              this.mes++;
-            }
-            else
-            {
-              this.dia++;
-            }
-
-          break;
-
-          case 31:
-            
-            if(dia() == 31)
-            {
-              this.dia = 1;
-              this.mes++;
-            }
-            else
-            {
-              this.dia++;
-            }
-        }
-        
-        break;
+      }
+      if(this.mes == 12)
+      {
+        this.ano++;
+        this.mes = 1;
+        this.dia = 1;
+      }
+      else
+      {
+        this.dia = 1;
+        this.mes++;
+      }
+    }
+    else
+    {
+      this.dia++;
     }
   }
 }

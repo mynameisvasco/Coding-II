@@ -18,15 +18,65 @@ public class Data
   /** Inicia a data a partir do dia, mes e ano dados. */
   public Data(int dia, int mes, int ano) 
   {
+    assert dataValida(dia, mes, ano): "Data inválida";
     this.dia = dia;
     this.mes = mes;
     this.ano = ano;
+  }
+
+  /** Inicia a data a partir de uma String. */
+  public Data(String data) 
+  {
+    String[] dataPartes = data.split("-");
+
+    ano = Integer.parseInt(dataPartes[0]);
+    mes = Integer.parseInt(dataPartes[1]);
+    dia = Integer.parseInt(dataPartes[2]);
   }
 
   /** Devolve esta data segundo a norma ISO 8601. */
   public String toString() 
   {
     return String.format("%04d-%02d-%02d", ano, mes, dia);
+  }
+
+
+  public int compareTo(Data otherDate)
+  {
+    if(this.ano() > otherDate.ano())
+    {
+      return 1;
+    }
+    else if(this.ano() == otherDate.ano())
+    {
+      if(this.mes() > otherDate.mes())
+      {
+        return 1;
+      }
+      else if (this.mes() == otherDate.mes())
+      {
+        if(this.dia() > otherDate.dia())
+        {
+          return 1;
+        }
+        else if (this.dia() == otherDate.dia())
+        {
+          return 0;
+        }
+        else
+        {
+          return -1;
+        }
+      }
+      else
+      {
+        return -1;
+      }
+    }
+    else
+    {
+      return -1;
+    }
   }
 
   /** Indica se ano é bissexto. */
@@ -61,6 +111,8 @@ public class Data
   /** Devolve o número de dias do mês dado. */
   public static int diasDoMes(int mes, int ano) 
   {
+    assert !(mes > 12 || mes < 1) : "Mês inválido";
+
     if(mes != 2)
     {
       return diasMesComum[mes-1];
@@ -113,7 +165,7 @@ public class Data
 
 
   public void seguinte() 
-  {      
+  {
     if(this.dia == diasDoMes(this.mes, this.ano))
     {
       if(this.mes == 2 && bissexto(this.ano))

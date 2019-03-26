@@ -24,7 +24,7 @@ public class Ngrams {
     String[] a;
     // Crie a função allNgrams e altere a invocação abaixo...
     a = allNgrams(args[0], N);
-    //out.println(Arrays.toString(a));
+    out.println(Arrays.toString(a));
   }
 
   // Gera todos os arranjos de 3 símbolos escolhidos do alfabeto alpha.
@@ -51,12 +51,20 @@ public class Ngrams {
     int l = alpha.length();
     String[] arr = {""};
 
-    if(n >= 0)
+    if(n > 0)
     {
-      arr[0] = String.valueOf(alpha.charAt(n));
       String[] arr2 = allNgrams(alpha, (n-1));
+      arr = new String[l*arr2.length];
 
-      System.out.println("" + arr + arr2);
+      int c = 0;
+      for(int i = 0; i < arr2.length; i++)
+      {
+        for(int k = 0; k < l; k++)
+        {
+          arr[c] = arr2[i] + alpha.charAt(k);
+          c++;
+        }
+      }
     }
     
     return arr;

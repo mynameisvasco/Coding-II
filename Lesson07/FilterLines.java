@@ -53,7 +53,7 @@ public class FilterLines
     //longLines.print();
     
     //longLines.print();
-    System.out.println(longLines.get(4));
+    System.out.println(longLines.get(1));
   }
 
 }

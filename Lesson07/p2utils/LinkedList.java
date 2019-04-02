@@ -153,10 +153,12 @@ public class LinkedList<E> {
       if(i != pos)
       {
         ++i;
-        get(e.next, pos, i, size);
+        return get(e.next, pos, i, size);
       }
-      
-      return e;
+      else
+      {
+        return e;
+      }
     }
     else
     {
@@ -164,6 +166,16 @@ public class LinkedList<E> {
     }
   }
 
+  public LinkedList<E> concatenate(LinkedList<E> lst)
+  {
+    LinkedList<E> clist = new LinkedList<E>();
+    concatenate(clist, 0);
+  } 
+
+  private Node<E> concatenate(LinkedList<E> lst, int i)
+  {
+    
+  }
 
   /** Prints all elements, one per line. */
   public void print() {

@@ -31,7 +31,7 @@ public class DynamicArray<E> {
     assert idx >= 0;
     if(idx >= this.array.length)
     {
-      E[] newArray = (E[]) new Object[this.array.length + this.BLOCK];
+      E[] newArray = (E[]) new Object[ ((idx+this.BLOCK) / this.BLOCK) * this.BLOCK];
       int i = 0;
       while(i < this.array.length && this.array[i] != null)
       {
@@ -55,31 +55,30 @@ public class DynamicArray<E> {
   public E get(int idx) 
   {
     assert idx >= 0;
-    int i = 0;
-    while(i < this.array.length && this.array[i] != null)
+
+    if(idx < this.array.length)
     {
-      if(i == idx)
-      {
-        return this.array[i];
-      }
-      i++;
+      return this.array[idx];
     }
-    return null;
+    else
+    {
+      return null;
+    }
   }
 
   // Define the second get method
   public E get(int idx, E d) 
   {
     assert idx >= 0;
-    int i = 0;
-    while(i < this.array.length && this.array[i] != null)
+    E value = this.get(idx);
+
+    if(value != null)
     {
-      if(i == idx)
-      {
-        return this.array[i];
-      }
-      i++;
+      return value;
     }
-    return d;
+    else
+    {
+      return d;
+    }
   }
 }

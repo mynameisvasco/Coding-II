@@ -42,18 +42,17 @@ public class FilterLines
     sf.close();
 
     // Escrever conteúdo das listas...
-    /*out.println("Curtas---|---------|---------|---------|---------");
+    /**out.println("Curtas---|---------|---------|---------|---------");
     shortLines.print();
 
     out.println("Médias---|---------|---------|---------|---------");
     mediumLines.print();
 
     out.println("Longas---|---------|---------|---------|---------");
+    longLines.print();
     */
-    //longLines.print();
-    
-    //longLines.print();
-    System.out.println(longLines.get(1));
+    longLines.remove("vasco sousa é lindooooooooooo 1234567 890");
+    longLines.print();
   }
 
 }

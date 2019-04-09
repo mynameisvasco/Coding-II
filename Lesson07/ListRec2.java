@@ -3,10 +3,13 @@ import java.io.File;
 
 import p2utils.LinkedList;
 
-public class ListRec2 {
+public class ListRec2 
+{
 
-  public static void main(String[] args) {
-    if (args.length != 1) {
+  public static void main(String[] args) 
+  {
+    if (args.length != 1) 
+    {
       err.println("Uso: java -ea ListRec2 <dir>");
       exit(1);
     }
@@ -14,7 +17,8 @@ public class ListRec2 {
     File dir = new File(args[0]);
 
     // Verificar entrada
-    if (!dir.exists()) {
+    if (!dir.exists()) 
+    {
       err.printf("ERRO: %s nao existe!\n", dir);
       exit(2);
     }
@@ -26,7 +30,27 @@ public class ListRec2 {
   /** Devolve uma lista com o conteúdo de um directório f
    *  e de todos os seus subdirectórios recursivamente.
    */
-  public static LinkedList<File> recListFiles(File f) {
-    //...
+  public static LinkedList<File> recListFiles(File f) 
+  {
+    return recListFiles(new LinkedList<File>(), f);
   }
-}
+
+  private static LinkedList<File> recListFiles(LinkedList<File> l, File f)
+  {
+    if(f.isDirectory())
+    {
+      l.addLast(f);
+      File[] dir = f.listFiles();
+      for(File file : dir)
+      {
+        recListFiles(l, file);
+      }
+    }
+    else
+    {
+      l.addLast(f);
+    }
+
+    return l;
+  }
+}  

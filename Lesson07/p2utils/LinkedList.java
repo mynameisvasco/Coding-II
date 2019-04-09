@@ -134,7 +134,7 @@ public class LinkedList<E> {
     }
   }
 
-  public E get(int pos)
+  public Node<E> get(int pos)
   {
     assert pos >= 0 : "Position should be positive integer";
     assert pos <= (size - 1) : "Position should be lower than list size";
@@ -143,7 +143,7 @@ public class LinkedList<E> {
     {
       System.out.println("Element in position " + pos + " not found.");
     }
-    return E.elem;
+    return E;
   }
 
   private Node<E> get(Node<E> e,int pos, int i, int size)
@@ -169,13 +169,49 @@ public class LinkedList<E> {
   public LinkedList<E> concatenate(LinkedList<E> lst)
   {
     LinkedList<E> clist = new LinkedList<E>();
-    concatenate(clist, 0);
+
+    concatenate(lst, clist, 0, 0);
+    return clist;
   } 
 
-  private Node<E> concatenate(LinkedList<E> lst, int i)
+  private void concatenate(LinkedList<E> lst, LinkedList<E> clist, int i, int k)
   {
-    
+    if(i < this.size())
+    {
+      if(this.get(i).next() == null)
+      {
+        clist.addLast(this.get(i).elem());
+        concatenate2(clist, lst, k);
+      }
+      else
+      {
+        clist.addLast(this.get(i).elem());
+        ++i;
+        concatenate(lst, clist, i, k);
+      }
+    }
   }
+
+  private void concatenate2(LinkedList clist, LinkedList<E> lst, int k)
+  {
+    if(k < lst.size())
+    {
+      clist.addLast(lst.get(k).elem());
+      ++k;
+      concatenate2(clist, lst, k);
+    }
+  }
+
+  public void remove(E e){
+		remove(e, first);
+	}
+  
+	private void remove(E e, Node<E> n){
+		if(e.equals(n.elem)) first = n.next;
+		if(e.equals(n.next.elem)) n.next = n.next.next;
+		else remove(e, n.next);
+	}
+  
 
   /** Prints all elements, one per line. */
   public void print() {

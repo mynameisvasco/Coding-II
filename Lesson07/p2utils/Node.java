@@ -15,6 +15,15 @@ class Node<E> {
     next = null;
   }
 
+  public Node<E> next()
+  {
+    return this.next;
+  }
+
+  public E elem()
+  {
+    return this.elem;
+  }
 }
 
 

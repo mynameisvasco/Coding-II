@@ -29,6 +29,10 @@ public class DynamicArray<E> {
    */
   public void set(int idx, E value) {
     assert idx >= 0;
+    if(idx > this.maxidx)
+    {
+      this.maxidx = idx;
+    }
     if(idx >= this.array.length)
     {
       E[] newArray = (E[]) new Object[ ((idx+this.BLOCK) / this.BLOCK) * this.BLOCK];
